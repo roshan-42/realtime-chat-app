@@ -15,27 +15,28 @@ import Received from "./messages/Received";
 const Inbox = () => {
   const { userInfoList, receiverId } = useSelector((state) => state.chat);
   const userinfo = userInfoList.find((user) => user.userId == receiverId);
+
   const userId = useSelector((state) => state.auth.userInfo.uid);
   const x = useSelector((state) => state.auth.userInfo);
-  console.log("userinfocheckxxxxxxxxxxxxxxxxxxxxx", x);
+  // console.log("userinfocheckxxxxxxxxxxxxxxxxxxxxx", x);
   const [messages, setMessages] = useState([]);
-  console.log("Messages_____________________", messages);
+  // console.log("Messages_____________________", messages);
 
-  console.log("userInfolis___________", userInfoList);
-  console.log("receiverID___________", receiverId);
+  // console.log("userInfolis___________", userInfoList);
+  // console.log("receiverID___________", receiverId);
   useEffect(() => {
-    console.log("chaliraacha_________");
-    console.log("receiverID__________", receiverId);
-    console.log("userID__________", userId);
+    // console.log("chaliraacha_________");
+    // console.log("receiverID__________", receiverId);
+    // console.log("userID__________", userId);
     const fetchPost = async () => {
       let messagesRef = collection(db, "messages");
-      console.log("__________message", messagesRef);
+      // console.log("__________message", messagesRef);
       let messagesQuery = query(
         messagesRef,
         where("senderId", "in", [userId, receiverId]),
         where("receiverId", "in", [userId, receiverId])
       );
-      console.log("messagesQuery___________");
+      // console.log("messagesQuery___________");
       onSnapshot(messagesQuery, (querySnapshot) => {
         let messageList = [];
         querySnapshot.forEach((doc) => {
@@ -69,13 +70,14 @@ const Inbox = () => {
   });
   return (
     <>
-      <div className=" w-full h-screen p-4">
-        <h2 className="text-lg font-semibold mb-4">
-          Messages <span /> {userinfo.fullname}
-        </h2>
-        {/* Sample messages list */}
-        <div className="w-full flex flex-col justify-between  h-[95%]  ">
-          <div className="overflow-y-auto max-h-80">
+      <div className="bg-gray-200 w-full h-screen  p-4">
+        <div className="flex gap-2 items-center">
+          <h2 className="text-lg font-semibold ">Message</h2> <span />
+          <p> {userinfo.fullname}</p>
+        </div>
+
+        <div className="w-full  flex mt-5 flex-col justify-between  h-[90%]  ">
+          <div className=" overflow-y-auto ">
             {mappedMessages.length > 0 ? mappedMessages : "Start conversation"}
           </div>
           <SendMessage />
