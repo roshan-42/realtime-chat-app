@@ -39,6 +39,7 @@ const LoginPage = () => {
 
       // console.log("userinfo___________________", userCredential);
     } catch (error) {
+      alert("Login Failed. Check your email and password");
       console.error(error);
     }
   };

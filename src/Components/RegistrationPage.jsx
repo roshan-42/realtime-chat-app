@@ -1,4 +1,5 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 import React, { useState } from "react";
 import { auth, db } from "../../firebase";
@@ -7,6 +8,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { Link } from "react-router-dom";
 
 const RegistrationPage = () => {
+  const navigate = useNavigate();
   //   registerUser("dhunganaaashutosh@gmail.com", "Helloworld@123");
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -55,6 +57,7 @@ const RegistrationPage = () => {
       );
       registeredUsers(userCredential.user.email, userCredential.user.uid);
       alert("Registration Success");
+      navigate("/");
     } catch (error) {
       alert("Registration Failed");
     }
@@ -64,7 +67,7 @@ const RegistrationPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-bold text-gray-500">
             Create an account
           </h2>
         </div>
