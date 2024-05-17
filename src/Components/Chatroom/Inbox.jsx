@@ -76,8 +76,8 @@ const Inbox = () => {
           <p> {userinfo.fullname}</p>
         </div>
 
-        <div className="w-full  flex mt-5 flex-col justify-between  h-[90%]  ">
-          <div className=" overflow-y-auto ">
+        <div className="w-full  flex mt-5 flex-col justify-between h-[90%]  ">
+          <div className=" overflow-y-auto   ">
             {mappedMessages.length > 0 ? mappedMessages : "Start conversation"}
           </div>
           <SendMessage />
