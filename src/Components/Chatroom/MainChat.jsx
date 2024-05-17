@@ -39,15 +39,16 @@ const MainChat = () => {
     <div className="relative min-h-screen rounded-lg shadow-lg w-full flex flex-col md:flex-row ">
       <button
         onClick={logoutUser}
-        className="bg-orange-500 absolute right-5 mt-2 px-3 rounded-md"
+        className="bg-orange-500 absolute right-5 mt-2 px-3 rounded-md text-white"
       >
         Logout
       </button>
       {/* Users list */}
       <Sidebar />
+      <div className="flex flex-col w-full ">
+        {receiverId ? <Inbox /> : <div>Start a conversation</div>}
+      </div>
       {/* Messages area */}
-      {}
-      {receiverId ? <Inbox /> : <div>Start a conversation</div>}
     </div>
   );
 };

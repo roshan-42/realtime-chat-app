@@ -70,8 +70,8 @@ const Inbox = () => {
   });
   return (
     <>
-      <div className="bg-gray-200 w-full h-screen  p-4">
-        <div className="flex gap-2 items-center">
+      <div className="bg-gray-200 w-full h-screen   p-4">
+        <div className="flex gap-2 items-center border-b border-black ">
           <h2 className="text-lg font-semibold ">Message</h2> <span />
           <p> {userinfo.fullname}</p>
         </div>
