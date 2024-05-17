@@ -6,6 +6,7 @@ import { auth, db } from "../../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
@@ -56,10 +57,38 @@ const RegistrationPage = () => {
         password
       );
       registeredUsers(userCredential.user.email, userCredential.user.uid);
-      alert("Registration Success");
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
+      Toast.fire({
+        icon: "success",
+        title: "User Successfully Registered",
+      });
       navigate("/");
     } catch (error) {
-      alert("Registration Failed");
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
+      Toast.fire({
+        icon: "warning",
+        title: "User Registration Failed",
+      });
     }
   };
 

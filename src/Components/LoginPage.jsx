@@ -4,12 +4,14 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../Store/Slices/AuthSlice";
-
+import Swal from "sweetalert2";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // ==============Sign in alert====================
 
   // ================Form control============
   const handleEmail = (e) => {
@@ -34,6 +36,21 @@ const LoginPage = () => {
       const parseduserdata = userdata ? JSON.parse(userdata) : null;
       // console.log("___________________", parseduserdata);
       dispatch(login(parseduserdata));
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Signed in successfully",
+      });
 
       navigate("/");
 
@@ -41,6 +58,7 @@ const LoginPage = () => {
     } catch (error) {
       alert("Login Failed. Check your email and password");
       console.error(error);
+    } finally {
     }
   };
 
