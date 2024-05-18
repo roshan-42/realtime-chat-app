@@ -1,5 +1,6 @@
 import React from "react";
 
+// This component is used to show received messages
 const Received = ({ message }) => {
   return (
     <div className="flex items-start mb-4">

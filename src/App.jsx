@@ -2,7 +2,6 @@ import React from "react";
 import LoginPage from "./Components/LoginPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RegistrationPage from "./Components/RegistrationPage";
-import Home from "./Components/Home";
 import MainChat from "./Components/Chatroom/MainChat";
 
 function App() {

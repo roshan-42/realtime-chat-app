@@ -1,29 +1,22 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
-import SendMessage from "./SendMessage";
 import Inbox from "./Inbox";
 import { Navigate, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase";
 import { useSelector } from "react-redux";
 
+// Main screen for chat
 const MainChat = () => {
-  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
-  // if (!isAuthenticated) return <Navigate to={"/Login"} />;
   const navigate = useNavigate();
+  // Get state from redux
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  if (!isAuthenticated) return <Navigate to={"/login"} />;
-  // ==============Handle my messages=================
-  const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState("");
   const receiverId = useSelector((state) => state.chat.receiverId);
-  const handleSendMessage = () => {
-    if (newMessage.trim() === "") return;
-    setMessages([...messages, newMessage]);
-    setNewMessage("");
-  };
 
+  // If not authenticated redirect to login
+  if (!isAuthenticated) return <Navigate to={"/login"} />;
+
+  // Function to logout the users
   const logoutUser = async () => {
     try {
       await signOut(auth);
@@ -33,8 +26,7 @@ const MainChat = () => {
       console.error(error);
     }
   };
-  const check = useSelector((state) => state.auth);
-  console.log("check_________", check);
+
   return (
     <div className="relative min-h-screen rounded-lg shadow-lg w-full flex flex-col md:flex-row ">
       <button
@@ -43,7 +35,6 @@ const MainChat = () => {
       >
         Logout
       </button>
-      {/* Users list */}
       <Sidebar />
       <div className="flex flex-col w-full ">
         {receiverId ? <Inbox /> : <div>Start a conversation</div>}

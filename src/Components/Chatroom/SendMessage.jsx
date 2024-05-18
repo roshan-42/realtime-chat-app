@@ -4,19 +4,15 @@ import { addDoc, collection } from "firebase/firestore";
 import { useSelector } from "react-redux";
 
 const SendMessage = () => {
+  // Get state from redux
   const receiverId = useSelector((state) => state.chat.receiverId);
   const userId = useSelector((state) => state.auth.userInfo.uid);
 
+  // States for messages
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // const senderInfo = localStorage.getItem("userinfo");
-  // const parsedInfo = senderInfo ? JSON.parse(senderInfo) : null;
-  // console.log("userinfo__________________", parsedInfo.uid);
-  // const Sender = parsedInfo.uid;
-
-  // ===============To set message to database===================
-
+  // Store messages in firestore
   const SendMessage = async (e) => {
     e.preventDefault();
     if (message.trim() === "") {

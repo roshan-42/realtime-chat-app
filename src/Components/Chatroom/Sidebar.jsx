@@ -6,18 +6,19 @@ import { loadUsers, changeReceiver } from "../../../Store/Slices/ChatSlice";
 
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
 
+// Sidebar component to show the user list
 const Sidebar = () => {
+  // Get states from redux
   const userEmail = useSelector((state) => state.auth.userInfo.email);
   const userslist = useSelector((state) => state.chat.userInfoList);
   const receiver = useSelector((state) => state.chat.receiverId);
 
+  // State to store loading state
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("userinfo to shown", userslist);
-
   const dispatch = useDispatch();
-  // const [activeReceiverId, setActiveReceiverId] = useState(0);
-  // const [userslist, setUserslist] = useState([]);
+
+  // Get users from firestore
   const getUsers = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "users"));
@@ -27,7 +28,6 @@ const Sidebar = () => {
         id: doc.id,
       }));
       dispatch(loadUsers([...userlist]));
-      console.log("userListtobedisplayed:", userlist);
     } catch (error) {
       console.error("Error fetching users: ", error);
     } finally {
@@ -36,6 +36,7 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
+    // Get users from firebase
     getUsers();
   }, []);
 

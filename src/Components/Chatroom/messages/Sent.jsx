@@ -1,5 +1,7 @@
 import React from "react";
 
+//This component is used to show sent message
+
 const Sent = ({ message }) => {
   return (
     <div className="flex items-start justify-end mb-4">

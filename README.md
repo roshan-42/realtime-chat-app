@@ -1,8 +1,29 @@
-# React + Vite
+# Chat App using react and firebase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a realtime chat application built using react and firebase.
 
-Currently, two official plugins are available:
+# Installation steps
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup Firebase
+
+Go to the firebase console and create a new project and register an application to firebase. Follow the steps from [here](https://firebase.google.com/docs/web/setup). To setup firebase db follow the steps from [here](https://firebase.google.com/docs/firestore/quickstart)
+
+## Store firestore config in environment variable
+
+The credential from firebase should be stored in .env files. Add the appropriate values as shown below
+
+REACT_APP_FIREBASE_API_KEY=<value>
+REACT_APP_FIREBASE_AUTH_DOMAIN=<value>
+REACT_APP_FIREBASE_PROJECT_ID=<value>
+REACT_APP_FIREBASE_STORAGE_BUCKET=<value>
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=<value>
+REACT_APP_FIREBASE_APP_ID=<value>
+REACT_APP_FIREBASE_MEASUREMENT_ID=<value>
+
+## Run npm install
+
+Run **npm install** to install all dependencie.
+
+## Test the application
+
+Execute **npm run dev** to run and test the application

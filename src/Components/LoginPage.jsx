@@ -1,19 +1,20 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../Store/Slices/AuthSlice";
 import Swal from "sweetalert2";
+
+// Login Component
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // States for the form
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // ==============Sign in alert====================
-
-  // ================Form control============
+  // Handler state changes from the form
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -22,6 +23,7 @@ const LoginPage = () => {
     setPassword(e.target.value);
   };
 
+  // On submit handler to login from firebase auth
   const loginUser = async (e) => {
     e.preventDefault();
     try {
@@ -34,7 +36,6 @@ const LoginPage = () => {
       localStorage.setItem("userinfo", JSON.stringify(userCredential.user));
       const userdata = localStorage.getItem("userinfo");
       const parseduserdata = userdata ? JSON.parse(userdata) : null;
-      // console.log("___________________", parseduserdata);
       dispatch(login(parseduserdata));
       const Toast = Swal.mixin({
         toast: true,
@@ -53,8 +54,6 @@ const LoginPage = () => {
       });
 
       navigate("/");
-
-      // console.log("userinfo___________________", userCredential);
     } catch (error) {
       const Toast = Swal.mixin({
         toast: true,

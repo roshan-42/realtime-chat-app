@@ -17,26 +17,18 @@ const Inbox = () => {
   const userinfo = userInfoList.find((user) => user.userId == receiverId);
 
   const userId = useSelector((state) => state.auth.userInfo.uid);
-  const x = useSelector((state) => state.auth.userInfo);
-  // console.log("userinfocheckxxxxxxxxxxxxxxxxxxxxx", x);
-  const [messages, setMessages] = useState([]);
-  // console.log("Messages_____________________", messages);
 
-  // console.log("userInfolis___________", userInfoList);
-  // console.log("receiverID___________", receiverId);
+  const [messages, setMessages] = useState([]);
+
   useEffect(() => {
-    // console.log("chaliraacha_________");
-    // console.log("receiverID__________", receiverId);
-    // console.log("userID__________", userId);
     const fetchPost = async () => {
       let messagesRef = collection(db, "messages");
-      // console.log("__________message", messagesRef);
+
       let messagesQuery = query(
         messagesRef,
         where("senderId", "in", [userId, receiverId]),
         where("receiverId", "in", [userId, receiverId])
       );
-      // console.log("messagesQuery___________");
       onSnapshot(messagesQuery, (querySnapshot) => {
         let messageList = [];
         querySnapshot.forEach((doc) => {
@@ -50,13 +42,6 @@ const Inbox = () => {
         });
         setMessages([...messageList]);
       });
-      // await getDocs(collection(db, "messages")).then((querySnapshot) => {
-      //   const newData = querySnapshot.docs.map((doc) => ({
-      //     ...doc.data(),
-      //     id: doc.id,
-      //   }));
-      //   console.log("message_________________", newData);
-      // });
     };
     fetchPost();
   }, [receiverId]);

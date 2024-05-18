@@ -8,15 +8,16 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
+//This is Registration page component, we can register new user account from here.
 const RegistrationPage = () => {
   const navigate = useNavigate();
-  //   registerUser("dhunganaaashutosh@gmail.com", "Helloworld@123");
+
+  // States used for form control
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  //   ===========Handle Form=======================
-
+  // functions used to handle state changes in the registration form
   const handleFullName = (e) => {
     setFullName(e.target.value);
   };
@@ -27,8 +28,7 @@ const RegistrationPage = () => {
     setPassword(e.target.value);
   };
 
-  // ========================================
-
+  // Function used to store user profile in firestore.
   const registeredUsers = async (email, id) => {
     try {
       await addDoc(collection(db, "users"), {
@@ -38,16 +38,12 @@ const RegistrationPage = () => {
 
         createdAt: serverTimestamp(),
       });
-      setMessage("");
-
-      alert("database updated");
     } catch (error) {
       console.error("Error registering user:", error);
     }
   };
 
-  // =================User registration============================
-
+  //Handle onSubmit events and register on firebase authentication
   const registerUser = async (e) => {
     e.preventDefault();
     try {
@@ -121,7 +117,6 @@ const RegistrationPage = () => {
                 placeholder="Full Name"
               />
             </div>
-            {/* ================Email address====================== */}
 
             <div>
               <input
@@ -137,7 +132,6 @@ const RegistrationPage = () => {
               />
             </div>
             <div>
-              {/* =============Password======================= */}
               <input
                 onChange={handlePassword}
                 id="password"
