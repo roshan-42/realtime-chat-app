@@ -48,7 +48,6 @@ const MainChat = () => {
       <div className="flex flex-col w-full ">
         {receiverId ? <Inbox /> : <div>Start a conversation</div>}
       </div>
-      {/* Messages area */}
     </div>
   );
 };

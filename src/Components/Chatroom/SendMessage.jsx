@@ -8,6 +8,7 @@ const SendMessage = () => {
   const userId = useSelector((state) => state.auth.userInfo.uid);
 
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // const senderInfo = localStorage.getItem("userinfo");
   // const parsedInfo = senderInfo ? JSON.parse(senderInfo) : null;
@@ -22,6 +23,7 @@ const SendMessage = () => {
       alert("Enter Valid Message");
       return;
     }
+    setIsLoading(true);
 
     try {
       await addDoc(collection(db, "messages"), {
@@ -34,6 +36,8 @@ const SendMessage = () => {
       console.log("Message Sent ");
     } catch (error) {
       console.error("Error sending message", error);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -52,10 +56,11 @@ const SendMessage = () => {
           className="w-full flex-grow border border-gray-300 rounded-lg  py-2 px-4 focus:outline-none focus:border-blue-500"
         />
         <button
+          disabled={isLoading}
           type="submit"
           className="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
         >
-          Send
+          {isLoading ? "Sending..." : "Send"}
         </button>
       </form>
     </div>
