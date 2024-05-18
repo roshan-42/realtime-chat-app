@@ -12,14 +12,13 @@ Go to the firebase console and create a new project and register an application 
 
 The credential from firebase should be stored in .env files. Add the appropriate values as shown below
 
-REACT_APP_FIREBASE_API_KEY=value  
-REACT_APP_FIREBASE_AUTH_DOMAIN=value  
-REACT_APP_FIREBASE_PROJECT_ID=value  
-REACT_APP_FIREBASE_STORAGE_BUCKET=value  
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=value  
-REACT_APP_FIREBASE_APP_ID=value   
-REACT_APP_FIREBASE_MEASUREMENT_ID=value  
-
+VITE_FIREBASE_API_KEY=value   
+VITE_FIREBASE_AUTH_DOMAIN=value  
+VITE_FIREBASE_PROJECT_ID=value  
+VITE_FIREBASE_STORAGE_BUCKET=value  
+VITE_FIREBASE_MESSAGING_SENDER_ID=value  
+VITE_FIREBASE_APP_ID=value  
+VITE_FIREBASE_MEASUREMENT_ID=value  
 ## Run npm install
 
 Run **npm install** to install all dependencie.
