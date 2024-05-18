@@ -13,7 +13,7 @@ const Sidebar = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("userinfo to shown", userEmail);
+  console.log("userinfo to shown", userslist);
 
   const dispatch = useDispatch();
   // const [activeReceiverId, setActiveReceiverId] = useState(0);
@@ -54,7 +54,7 @@ const Sidebar = () => {
         <h2>{userEmail} </h2>
       </div>
       <div className=" border-t flex flex-col items-start gap-3 mt-5">
-        {userslist.map((item) => (
+        {userslist?.map((item) => (
           <button
             onClick={() => dispatch(changeReceiver(item.userId))}
             className={` ${
